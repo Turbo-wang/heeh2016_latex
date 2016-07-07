@@ -30,7 +30,7 @@
 % in the camera-ready version and ask you to change it back.
 
 
-\title{Subspace Transform Method for Bilingual Word Translation}
+\title{Subspace Transform Thought for Bilingual Word Translation}
 
 \author{First Author \\
   Affiliation / Address line 1 \\
@@ -48,65 +48,33 @@
 \begin{document}
 \maketitle
 \begin{abstract}
-Continuous space's representation of words has showed good performance in many tasks of Natural
-Language Processing (NLP). Bilingual distributed representations of words can benefit Statistical Machine
-Translation (SMT). And some motheds for learning bilingual representations are to build the bridge between the source words and target words which have the same meaning by a linear transform matrix. Howover we found that most transform learning of bilingual word embedding is complished between the whole source language space and the whole target language space, which make the transform matrix capture the local word-pair relationships badly.
-Instead of the whole spaces, we try to devide the subspaces of the source language appropriately, then we compute the transform matrix in the subspaces respectively. Experiments on bilingual word translation show that 
+Continuous space's representations of words has showed good performance in many tasks of Natural Language Processing (NLP). Bilingual distributed representations of words can benefit Statistical Machine Translation (SMT). And some motheds for learning bilingual representations are to build the bridge between the source words and target words which have the same meaning by a linear transform matrix. Howover we found that most transform learning of bilingual represetations is complished between the entire source language space and the entire target language space, which makes the transform matrix capture the local word-pair relationships badly.Instead of the entire spaces, we try to devide the subspaces of the source language appropriately, then we compute the transform matrices in the subspaces respectively. Experiments on bilingual word translation show that the proposed method can achieve better performance on a word similarity task and the several bilingual word translation task. \tt Or we do some experiments.
 \end{abstract}
 
 \section{Introduction}
 \label{intro}
 
-%
-% The following footnote without marker is needed for the camera-ready
-% version of the paper.
-% Comment out the instructions (first text) and uncomment the 8 lines
-% under "final paper" for your variant of English.
-% 
-\blfootnote{
-    %
-    % for review submission
-    %
-    \hspace{-0.65cm}  % space normally used by the marker
-    Place licence statement here for the camera-ready version, see
-    Section~\ref{licence} of the instructions for preparing a
-    manuscript.
-    %
-    % % final paper: en-uk version (to license, a licence)
-    %
-    % \hspace{-0.65cm}  % space normally used by the marker
-    % This work is licensed under a Creative Commons 
-    % Attribution 4.0 International Licence.
-    % Licence details:
-    % \url{http://creativecommons.org/licenses/by/4.0/}
-    % 
-    % % final paper: en-us version (to licence, a license)
-    %
-    % \hspace{-0.65cm}  % space normally used by the marker
-    % This work is licenced under a Creative Commons 
-    % Attribution 4.0 International License.
-    % License details:
-    % \url{http://creativecommons.org/licenses/by/4.0/}
-}
-Distributed representation of words was applied in many NLP tasks successfully, especially bilingual word embedding has  
-  % \textbf for black font
-  % \texttt for url or shallow font
-% The following instructions are directed to authors of papers submitted
-% to COLING-2016 or accepted for publication in its proceedings. All
-% authors are required to adhere to these specifications. Authors are
-% required to provide a Portable Document Format (PDF) version of their
-% papers. \textbf{The proceedings are designed for printing on A4
-%   paper.}
+Deep learning shows powerful capacity in computer vision and natural language processing compared with other methods of machine learning. Most tasks of NLP have applied the deep learning such as text classsification, question answering, and machine translation. To give full play to the role of deep learning, we need a huge amount of text data to train the model. Raw text data is easy to collection in many language, on the other hand, labeled text data is expensive. Distributed representations of words can freely trained by an unsupervised learning method in large raw text data. Distributed representations has been studied for a long time which were raised with the language model \cite{}. The CBOW and Skip-gram models can capture a large number of recise syntactic and semantic word relationships \cite{Mikolov:2013}. In the representation space, similar-semantic words usually have close cosine distence such as vec(``man") - vec(``women") + vec(``king") is close to vec(``queen"). Due to its adventange of semanticse, word representations have been applied in many NLP tasks successfully\cite{}. Especially, neural network models in NLP prefer to build input matrix extracted from word representations. 
 
-% Authors from countries in which access to word-processing systems is
-% limited should contact the publication chairs,
-% Hitoshi Isahara and Masao Utiyama
-% (\texttt{isahara@tut.jp, mutiyama@nict.go.jp}),
-% as soon as possible.
+SMT is a sequence-to-sequence prediction task \cite{zong cheng qin}), which receives the source sentence and predicts the target sentence. Phrase-base machine translation (MT) often performs better than word-base MT \cite{}. Bilingual word representations which include distributed representations of two language can help to improve Statictial Machine Translation (SMT) results. Multilingual representation learning includes projection-based approaches and regularization-based approaches \cite{zou 2013}. In projection-based approaches, word repersentations of two languages build a relationship in bilingual continuous space by a linear transformation matrix \cite{Mikolov 2013}. The mapping through the matrix shows in Figure 1. 
 
-% We will make additional instructions available at ``Instructions for authors'' section of 
-% \url{http://coling2016.anlp.jp}. Please check
-% this website regularly.
+%picture 1 % picture 2
+
+Most methods to compute the linear transformation matrix utilize the word pairs which have the same or very similar meanings in source space and target space. However, we found that most methods are based on the whole source space and the whole target space and the transformation matrix's dimension is fixed by the word embedding dimsension: that means whatever the word pairs' quantity is, matrix's shape will not change. If the source space is very large, the capacity of transformation can not be improved. Besides that, the transformation matrix in the entire space can not capture the local word-pair relationships well. Besides, as shown in Figure2, when two kinds of local word pair relation appear in the spaces: one is straight linear transformation and the other is rotational transformation, the only matrix cannot learn the relationships very well.
+
+%picture 3 % picture 4
+
+We propose a novel method for bilingual word representations. Firstly, we devide the subspaces of the source language appropriately by unsupervised learning method and record the subspace center. The quantity of the subspaces can be adjusted according to the size of the entire continuous space. And the transformation matrices are computed in these subspaces respectively. This method can improve the capacity of linear mapping transformation in bilingual space. The thought of subspace can be used in the methods which utilize the linear relationship in bilingual space, such as \cite{}.
+
+
+\section{Related Word}
+
+Our work largely follows the methodology of (Mikolov et al., 2013b), while we learn the transformation matrices in subspaces respectively. 
+
+Distributed representations of words 
+
+\cite{zou} raised a method based on \cite{(Mikolov et al., 2013b)}, which normalize the word representations and use an orthogonal transform to learn the mapping matrix. In the experiments, we compare the work with ours. 
+
 
 
 \section{General Instructions}
@@ -466,11 +434,11 @@ rejected without review.
 
 
 
-\section*{Acknowledgements}
+% \section*{Acknowledgements}
 
-The acknowledgements should go immediately before the references.  Do
-not number the acknowledgements section. Do not include this section
-when submitting your paper for review.
+% The acknowledgements should go immediately before the references.  Do
+% not number the acknowledgements section. Do not include this section
+% when submitting your paper for review.
 
 % include your own bib file like this:
 %\bibliographystyle{acl}
